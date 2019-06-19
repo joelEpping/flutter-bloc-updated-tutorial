@@ -25,7 +25,7 @@ class WeatherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Fake Weather App"),
+        title: Text("Weather App"),
       ),
       // BlocProvider is an InheritedWidget for Blocs
       body: BlocProvider(
@@ -126,17 +126,22 @@ class CityInputField extends StatefulWidget {
 }
 
 class _CityInputFieldState extends State<CityInputField> {
+   final cityName = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: TextField(
+        controller: cityName,
         onSubmitted: submitCityName,
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
           hintText: "Enter a city",
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-          suffixIcon: Icon(Icons.search),
+          suffixIcon: IconButton(
+            icon: new Icon(Icons.search),
+            onPressed: () => submitCityName(cityName.text),
+          ),
         ),
       ),
     );
