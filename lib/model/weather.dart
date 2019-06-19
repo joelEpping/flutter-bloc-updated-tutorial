@@ -4,9 +4,11 @@ import 'package:meta/meta.dart';
 class Weather extends Equatable {
   final String cityName;
   final double temperature;
+  final bool isFake;
 
-  Weather({
+  Weather( {
     @required this.cityName,
     @required this.temperature,
-  }) : super([cityName, temperature]);
+    @required this.isFake
+  }) : super([cityName, temperature,isFake]);
 }

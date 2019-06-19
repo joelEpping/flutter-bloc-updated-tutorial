@@ -107,8 +107,10 @@ class WeatherPageChild extends StatelessWidget {
         ),
         Text(
           // Display the temperature with 1 decimal place
-          "${weather.temperature.toStringAsFixed(1)} °C",
-          style: TextStyle(fontSize: 80),
+          weather.isFake == false
+              ? "${weather.temperature.toStringAsFixed(1)} °C"
+              : "Fake value. ${weather.temperature.toStringAsFixed(1)} °C",
+          style: TextStyle(fontSize: weather.isFake == false ? 80 : 20),
         ),
         CityInputField(),
       ],
@@ -126,7 +128,7 @@ class CityInputField extends StatefulWidget {
 }
 
 class _CityInputFieldState extends State<CityInputField> {
-   final cityName = TextEditingController();
+  final cityName = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
