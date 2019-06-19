@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_updated_tutorial/model/weather.dart';
 import './bloc.dart';
@@ -41,7 +42,13 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
             return Weather(cityName: cityName,temperature: tempInCelcius);
           }
         } else {
+          //if you dont get a valid api key it will generated a random value.
           print("Request failed with status: ${response.statusCode}.");
+           return Weather(
+          cityName: cityName,
+          // Temperature between 20 and 35.99
+          temperature: 20 + Random().nextInt(15) + Random().nextDouble(),
+        );
         }
       },
     );
